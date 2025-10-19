@@ -1,39 +1,39 @@
-# ResPart - Find Your Research Partner
+ï»¿# ResPart - Find Your Research Partner
 
 A modern, Tinder-style research paper discovery app built with React, Vite, and Framer Motion.
 
-## ??€ Live Demo
+## Live Demo
 
 **Try it now:** https://yashmgupta.github.io/research-swipe-react
 
 ---
 
-## ??¯ Features
+## Features
 
 ### Free Features
-- â? **Swipeable Cards** - Drag papers left (dislike) or right (like) with smooth animations
-- â? **Real Papers** - Fetches live data from Semantic Scholar API
-- â? **Archive System** - Auto-archive liked papers into topic-based folders
-- â? **Full Archive Page** - Browse all your saved papers by folder
-- â? **Basic Export** - Export to JSON and CSV formats
-- â? **Stats Tracking** - Real-time counts of liked, disliked, and archived papers
-- â? **Responsive Design** - Works on desktop and mobile
-- â? **No Account Required** - All data stored locally in your browser
+- **Swipeable Cards** - Drag papers left (dislike) or right (like) with smooth animations
+- **Real Papers** - Fetches live data from Semantic Scholar API
+- **Archive System** - Auto-archive liked papers into topic-based folders
+- **Full Archive Page** - Browse all your saved papers by folder
+- **Basic Export** - Export to JSON and CSV formats
+- **Stats Tracking** - Real-time counts of liked, disliked, and archived papers
+- **Responsive Design** - Works on desktop and mobile
+- **No Account Required** - All data stored locally in your browser
 
-### ?'? Premium Features (Coming Soon)
-- ?"' **BibTeX Export** - For LaTeX/Overleaf users
-- ?"' **EndNote Export** - For citation managers
-- ?"' **Plain Text Export** - Formatted citations
-- ?"' **Advanced Search** - Filter by year, author, citations
-- ?"' **Cloud Sync** - Access from any device
-- ?"' **Collaboration** - Share folders with team members
-- ?"' **Commercial Use** - License for organizations
+### Premium Features (Coming Soon)
+- **BibTeX Export** - For LaTeX/Overleaf users (LOCKED)
+- **EndNote Export** - For citation managers (LOCKED)
+- **Plain Text Export** - Formatted citations (LOCKED)
+- **Advanced Search** - Filter by year, author, citations (LOCKED)
+- **Cloud Sync** - Access from any device (LOCKED)
+- **Collaboration** - Share folders with team members (LOCKED)
+- **Commercial Use** - License for organizations (LOCKED)
 
 **Interested in premium features?** Contact: yash.610@live.com
 
 ---
 
-## ? ¸ Tech Stack
+## Tech Stack
 
 - **React 18.3.1** - UI library
 - **Vite 6.0.3** - Lightning-fast build tool
@@ -41,7 +41,7 @@ A modern, Tinder-style research paper discovery app built with React, Vite, and 
 - **Lucide React 0.460.0** - Beautiful icons
 - **Semantic Scholar API** - Free research papers database
 
-## ?"¦ Installation
+## Installation
 
 ### Prerequisites
 - Node.js 18+ 
@@ -49,7 +49,7 @@ A modern, Tinder-style research paper discovery app built with React, Vite, and 
 
 ### Local Development
 
-\\\ash
+```bash
 # Clone the repository
 git clone https://github.com/yashmgupta/research-swipe-react.git
 cd research-swipe-react
@@ -68,75 +68,75 @@ npm run preview
 
 # Deploy to GitHub Pages
 npm run deploy
-\\\
+```
 
 ---
 
-## ?" How to Use
+## How to Use
 
 1. **Search** - Enter a research topic (e.g., "machine learning", "climate change")
-2. **Swipe** - Drag cards right to LIKE â¤¸, left to NOPE ?'?
+2. **Swipe** - Drag cards right to LIKE, left to NOPE
 3. **Archive** - Liked papers are auto-saved to the topic folder
 4. **Browse Archive** - Click "Archive" to view all your saved papers
 5. **Export** - Download your collection in JSON or CSV format (Premium: BibTeX, EndNote, Text)
 
 ---
 
-## ?" Project Structure
+## Project Structure
 
-\\\
+```
 research-swipe-react/
-â"?â"€â"€ src/
-â"   â"?â"€â"€ components/
-â"   â"   â"?â"€â"€ SwipeCard.jsx       # Swipeable card with Framer Motion
-â"   â"   â"?â"€â"€ SwipeCard.css       # Card animations & styles
-â"   â"   â"?â"€â"€ ExportModal.jsx     # 5-tab export modal
-â"   â"   â"?â"€â"€ ExportModal.css     # Modal styles
-â"   â"   â"?â"€â"€ ArchivePage.jsx     # Full-screen archive browser
-â"   â"   â"?â"€â"€ ArchivePage.css     # Archive grid & list styles
-â"   â"   â"?â"€â"€ SearchBar.jsx       # Search input form
-â"   â"   â"?â"€â"€ SearchBar.css       # Search styles
-â"   â"   â"?â"€â"€ Stats.jsx           # 3-stat display
-â"   â"   â""â"€â"€ Stats.css           # Stats grid styles
-â"   â"?â"€â"€ App.jsx                 # Main app logic & state
-â"   â"?â"€â"€ App.css                 # Global app styles
-â"   â"?â"€â"€ main.jsx                # React entry point
-â"   â""â"€â"€ index.css               # CSS variables & resets
-â"?â"€â"€ index.html                  # HTML template
-â"?â"€â"€ package.json                # Dependencies & scripts
-â"?â"€â"€ vite.config.js              # Vite configuration
-â"?â"€â"€ LICENSE                     # Proprietary license
-â"?â"€â"€ TERMS_OF_SERVICE.md         # User terms
-â"?â"€â"€ COMMERCIALIZATION.md        # Business strategy
-â""â"€â"€ README.md                   # This file
-\\\
+ src/
+    components/
+       SwipeCard.jsx       # Swipeable card with Framer Motion
+       SwipeCard.css       # Card animations & styles
+       ExportModal.jsx     # 5-tab export modal
+       ExportModal.css     # Modal styles
+       ArchivePage.jsx     # Full-screen archive browser
+       ArchivePage.css     # Archive grid & list styles
+       SearchBar.jsx       # Search input form
+       SearchBar.css       # Search styles
+       Stats.jsx           # 3-stat display
+       Stats.css           # Stats grid styles
+    App.jsx                 # Main app logic & state
+    App.css                 # Global app styles
+    main.jsx                # React entry point
+    index.css               # CSS variables & resets
+ index.html                  # HTML template
+ package.json                # Dependencies & scripts
+ vite.config.js              # Vite configuration
+ LICENSE                     # Proprietary license
+ TERMS_OF_SERVICE.md         # User terms
+ COMMERCIALIZATION.md        # Business strategy
+ README.md                   # This file
+```
 
 ---
 
-## â?¸ License & Terms
+## License & Terms
 
-**Copyright Â© 2025 Yash M Gupta. All Rights Reserved.**
+**Copyright (c) 2025 Yash M Gupta. All Rights Reserved.**
 
 This software is proprietary and commercially licensed. See [LICENSE](./LICENSE) for details.
 
 ### Usage Rights
 
-- â? **Free Personal Use** - Use for personal research (non-commercial)
-- â? **No Commercial Use** - Requires commercial license
-- â? **No Redistribution** - Cannot share or resell without permission
-- â? **No Modification** - Cannot alter or create derivative works
+- **YES** - Free Personal Use (Use for personal research, non-commercial)
+- **NO** - Commercial Use (Requires commercial license)
+- **NO** - Redistribution (Cannot share or resell without permission)
+- **NO** - Modification (Cannot alter or create derivative works)
 
 ### Commercial Licensing
 
 For commercial use, institutional licenses, or premium features:
 
-?"§ **Email:** yash.610@live.com  
-?? **Demo:** https://yashmgupta.github.io/research-swipe-react  
-?" **Terms:** [TERMS_OF_SERVICE.md](./TERMS_OF_SERVICE.md)
+**Email:** yash.610@live.com  
+**Demo:** https://yashmgupta.github.io/research-swipe-react  
+**Terms:** [TERMS_OF_SERVICE.md](./TERMS_OF_SERVICE.md)
 
 ---
 
-## ?'¼ Business Model
+## Business Model
 
 ResPart uses a **freemium model**:
 
@@ -146,7 +146,7 @@ ResPart uses a **freemium model**:
 - Local storage only
 - Personal use only
 
-### Premium Tier (.99/month)
+### Premium Tier ($4.99/month)
 - BibTeX, EndNote exports
 - Cloud sync
 - Advanced search
@@ -162,7 +162,7 @@ See [COMMERCIALIZATION.md](./COMMERCIALIZATION.md) for full business plan.
 
 ---
 
-## ?¤ Contributing
+## Contributing
 
 This is a commercial project with a proprietary license. Contributions are welcome but must be submitted with a Contributor License Agreement (CLA).
 
@@ -173,21 +173,21 @@ This is a commercial project with a proprietary license. Contributions are welco
 
 ---
 
-## ?"? Contact & Support
+## Contact & Support
 
 ### For Users
-- ? **Bug Reports:** GitHub Issues
-- ?'¡ **Feature Requests:** GitHub Discussions
-- â" **Questions:** GitHub Discussions
+- **Bug Reports:** GitHub Issues
+- **Feature Requests:** GitHub Discussions
+- **Questions:** GitHub Discussions
 
 ### For Business
-- ?'¼ **Commercial Licensing:** yash.610@live.com
-- ?'? **Premium Features:** yash.610@live.com
-- ?¢ **Institutional Sales:** yash.610@live.com
+- **Commercial Licensing:** yash.610@live.com
+- **Premium Features:** yash.610@live.com
+- **Institutional Sales:** yash.610@live.com
 
 ---
 
-## ? Acknowledgments
+## Acknowledgments
 
 - **Semantic Scholar** - Free API for research papers
 - **Framer Motion** - Smooth animations library
@@ -196,20 +196,20 @@ This is a commercial project with a proprietary license. Contributions are welco
 
 ---
 
-## ?"? Roadmap
+## Roadmap
 
-### v1.0 (Current) â?
+### v1.0 (Current) - COMPLETE
 - Swipe interface
 - Archive system
 - Basic export (JSON, CSV)
 
-### v2.0 (Q1 2026) ?"¨
+### v2.0 (Q1 2026) - IN PROGRESS
 - Premium features (BibTeX, EndNote)
 - User authentication
 - Payment integration
 - Cloud sync
 
-### v3.0 (Q3 2026) ?"®
+### v3.0 (Q3 2026) - PLANNED
 - Mobile apps (iOS/Android)
 - AI recommendations
 - Collaboration features
@@ -217,6 +217,6 @@ This is a commercial project with a proprietary license. Contributions are welco
 
 ---
 
-**Built with â¤¸ by [Yash M Gupta](https://github.com/yashmgupta)**
+**Built with care by Yash M Gupta**
 
-**ResPart - Find Your Research Partner** ?"?
+**ResPart - Find Your Research Partner**
