@@ -2,30 +2,58 @@
 
 A modern, Tinder-style research paper discovery app built with React, Vite, and Framer Motion.
 
-## üéØ Features
+## ??Ä Live Demo
 
-- **Swipeable Cards** - Drag papers left (dislike) or right (like) with smooth animations
-- **Real Papers** - Fetches live data from Semantic Scholar API
-- **Export Options** - Export your collection in 5 formats:
-  - JSON - App-friendly data format
-  - CSV - Spreadsheet compatible  
-  - BibTeX - LaTeX/Overleaf citations
-  - EndNote - Reference manager format
-  - Text - Plain readable format
-- **Archive System** - Auto-archive liked papers by topic
-- **Stats Tracking** - Real-time counts of liked, disliked, and archived papers
-- **Framer Motion** - Smooth drag animations and transitions
-- **Responsive Design** - Works on desktop and mobile
+**Try it now:** https://yashmgupta.github.io/research-swipe-react
 
-## üöÄ Quick Start
+---
+
+## ??Ø Features
+
+### Free Features
+- ‚? **Swipeable Cards** - Drag papers left (dislike) or right (like) with smooth animations
+- ‚? **Real Papers** - Fetches live data from Semantic Scholar API
+- ‚? **Archive System** - Auto-archive liked papers into topic-based folders
+- ‚? **Full Archive Page** - Browse all your saved papers by folder
+- ‚? **Basic Export** - Export to JSON and CSV formats
+- ‚? **Stats Tracking** - Real-time counts of liked, disliked, and archived papers
+- ‚? **Responsive Design** - Works on desktop and mobile
+- ‚? **No Account Required** - All data stored locally in your browser
+
+### ?'? Premium Features (Coming Soon)
+- ?"' **BibTeX Export** - For LaTeX/Overleaf users
+- ?"' **EndNote Export** - For citation managers
+- ?"' **Plain Text Export** - Formatted citations
+- ?"' **Advanced Search** - Filter by year, author, citations
+- ?"' **Cloud Sync** - Access from any device
+- ?"' **Collaboration** - Share folders with team members
+- ?"' **Commercial Use** - License for organizations
+
+**Interested in premium features?** Contact: yash.610@live.com
+
+---
+
+## ? ∏ Tech Stack
+
+- **React 18.3.1** - UI library
+- **Vite 6.0.3** - Lightning-fast build tool
+- **Framer Motion 11.11.17** - Smooth animations
+- **Lucide React 0.460.0** - Beautiful icons
+- **Semantic Scholar API** - Free research papers database
+
+## ?"¶ Installation
 
 ### Prerequisites
 - Node.js 18+ 
 - npm or yarn
 
-### Installation
+### Local Development
 
-```bash
+\\\ash
+# Clone the repository
+git clone https://github.com/yashmgupta/research-swipe-react.git
+cd research-swipe-react
+
 # Install dependencies
 npm install
 
@@ -37,57 +65,158 @@ npm run build
 
 # Preview production build
 npm run preview
-```
 
-## üì± How to Use
-
-1. **Search** - Enter a research topic (e.g., "machine learning")
-2. **Swipe** - Drag cards right to like, left to dislike
-3. **Export** - Click the Export button to save your collection
-4. **Archive** - Papers are auto-archived by topic when liked
-
-## üõ†Ô∏è Tech Stack
-
-- **React 18** - UI library
-- **Vite** - Build tool
-- **Framer Motion** - Animations
-- **Lucide React** - Icons
-- **Semantic Scholar API** - Research papers data
-
-## üìÅ Project Structure
-
-```
-research-swipe-react/
-‚îú‚îÄ‚îÄ src/
-‚îÇ   ‚îú‚îÄ‚îÄ components/
-‚îÇ   ‚îÇ   ‚îú‚îÄ‚îÄ SwipeCard.jsx       # Main swipeable card
-‚îÇ   ‚îÇ   ‚îú‚îÄ‚îÄ ExportModal.jsx     # Export tabs modal
-‚îÇ   ‚îÇ   ‚îú‚îÄ‚îÄ SearchBar.jsx       # Search input
-‚îÇ   ‚îÇ   ‚îî‚îÄ‚îÄ Stats.jsx           # Stats display
-‚îÇ   ‚îú‚îÄ‚îÄ App.jsx                 # Main app component
-‚îÇ   ‚îú‚îÄ‚îÄ main.jsx                # Entry point
-‚îÇ   ‚îî‚îÄ‚îÄ index.css               # Global styles
-‚îú‚îÄ‚îÄ index.html
-‚îú‚îÄ‚îÄ package.json
-‚îî‚îÄ‚îÄ vite.config.js
-```
-
-## üé® Customization
-
-### Change Colors
-Edit the CSS files in `src/components/` to customize colors and styles.
-
-### API Integration
-The app uses Semantic Scholar API (no key required). To use a different API, modify the `searchPapers` function in `App.jsx`.
-
-## üìÑ License
-
-MIT License - feel free to use this project for your research!
-
-## ü§ù Contributing
-
-Contributions welcome! Feel free to open issues or pull requests.
+# Deploy to GitHub Pages
+npm run deploy
+\\\
 
 ---
 
-Built with ‚ù§Ô∏è for researchers
+## ?" How to Use
+
+1. **Search** - Enter a research topic (e.g., "machine learning", "climate change")
+2. **Swipe** - Drag cards right to LIKE ‚§∏, left to NOPE ?'?
+3. **Archive** - Liked papers are auto-saved to the topic folder
+4. **Browse Archive** - Click "Archive" to view all your saved papers
+5. **Export** - Download your collection in JSON or CSV format (Premium: BibTeX, EndNote, Text)
+
+---
+
+## ?" Project Structure
+
+\\\
+research-swipe-react/
+‚"?‚"Ä‚"Ä src/
+‚"   ‚"?‚"Ä‚"Ä components/
+‚"   ‚"   ‚"?‚"Ä‚"Ä SwipeCard.jsx       # Swipeable card with Framer Motion
+‚"   ‚"   ‚"?‚"Ä‚"Ä SwipeCard.css       # Card animations & styles
+‚"   ‚"   ‚"?‚"Ä‚"Ä ExportModal.jsx     # 5-tab export modal
+‚"   ‚"   ‚"?‚"Ä‚"Ä ExportModal.css     # Modal styles
+‚"   ‚"   ‚"?‚"Ä‚"Ä ArchivePage.jsx     # Full-screen archive browser
+‚"   ‚"   ‚"?‚"Ä‚"Ä ArchivePage.css     # Archive grid & list styles
+‚"   ‚"   ‚"?‚"Ä‚"Ä SearchBar.jsx       # Search input form
+‚"   ‚"   ‚"?‚"Ä‚"Ä SearchBar.css       # Search styles
+‚"   ‚"   ‚"?‚"Ä‚"Ä Stats.jsx           # 3-stat display
+‚"   ‚"   ‚""‚"Ä‚"Ä Stats.css           # Stats grid styles
+‚"   ‚"?‚"Ä‚"Ä App.jsx                 # Main app logic & state
+‚"   ‚"?‚"Ä‚"Ä App.css                 # Global app styles
+‚"   ‚"?‚"Ä‚"Ä main.jsx                # React entry point
+‚"   ‚""‚"Ä‚"Ä index.css               # CSS variables & resets
+‚"?‚"Ä‚"Ä index.html                  # HTML template
+‚"?‚"Ä‚"Ä package.json                # Dependencies & scripts
+‚"?‚"Ä‚"Ä vite.config.js              # Vite configuration
+‚"?‚"Ä‚"Ä LICENSE                     # Proprietary license
+‚"?‚"Ä‚"Ä TERMS_OF_SERVICE.md         # User terms
+‚"?‚"Ä‚"Ä COMMERCIALIZATION.md        # Business strategy
+‚""‚"Ä‚"Ä README.md                   # This file
+\\\
+
+---
+
+## ‚?∏ License & Terms
+
+**Copyright ¬© 2025 Yash M Gupta. All Rights Reserved.**
+
+This software is proprietary and commercially licensed. See [LICENSE](./LICENSE) for details.
+
+### Usage Rights
+
+- ‚? **Free Personal Use** - Use for personal research (non-commercial)
+- ‚? **No Commercial Use** - Requires commercial license
+- ‚? **No Redistribution** - Cannot share or resell without permission
+- ‚? **No Modification** - Cannot alter or create derivative works
+
+### Commercial Licensing
+
+For commercial use, institutional licenses, or premium features:
+
+?"ß **Email:** yash.610@live.com  
+?? **Demo:** https://yashmgupta.github.io/research-swipe-react  
+?" **Terms:** [TERMS_OF_SERVICE.md](./TERMS_OF_SERVICE.md)
+
+---
+
+## ?'º Business Model
+
+ResPart uses a **freemium model**:
+
+### Free Tier
+- Unlimited paper browsing
+- Basic export (JSON, CSV)
+- Local storage only
+- Personal use only
+
+### Premium Tier (.99/month)
+- BibTeX, EndNote exports
+- Cloud sync
+- Advanced search
+- Commercial use rights
+- Priority support
+
+### Institutional Licenses
+- Custom pricing for universities and organizations
+- Multi-user access
+- Dedicated support
+
+See [COMMERCIALIZATION.md](./COMMERCIALIZATION.md) for full business plan.
+
+---
+
+## ?§ Contributing
+
+This is a commercial project with a proprietary license. Contributions are welcome but must be submitted with a Contributor License Agreement (CLA).
+
+**Before contributing:**
+1. Open an issue to discuss your idea
+2. Sign the CLA (will be provided)
+3. Submit PR with clear description
+
+---
+
+## ?"? Contact & Support
+
+### For Users
+- ? **Bug Reports:** GitHub Issues
+- ?'° **Feature Requests:** GitHub Discussions
+- ‚" **Questions:** GitHub Discussions
+
+### For Business
+- ?'º **Commercial Licensing:** yash.610@live.com
+- ?'? **Premium Features:** yash.610@live.com
+- ?¢ **Institutional Sales:** yash.610@live.com
+
+---
+
+## ? Acknowledgments
+
+- **Semantic Scholar** - Free API for research papers
+- **Framer Motion** - Smooth animations library
+- **Lucide React** - Beautiful icon set
+- **React & Vite** - Modern web development tools
+
+---
+
+## ?"? Roadmap
+
+### v1.0 (Current) ‚?
+- Swipe interface
+- Archive system
+- Basic export (JSON, CSV)
+
+### v2.0 (Q1 2026) ?"®
+- Premium features (BibTeX, EndNote)
+- User authentication
+- Payment integration
+- Cloud sync
+
+### v3.0 (Q3 2026) ?"Æ
+- Mobile apps (iOS/Android)
+- AI recommendations
+- Collaboration features
+- PDF management
+
+---
+
+**Built with ‚§∏ by [Yash M Gupta](https://github.com/yashmgupta)**
+
+**ResPart - Find Your Research Partner** ?"?
