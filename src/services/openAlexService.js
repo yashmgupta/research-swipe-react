@@ -10,7 +10,7 @@ class OpenAlexService {
   constructor() {
     this.cache = new Map();
     this.abortController = null;
-    this.politeEmail = 'your-email@example.com'; // Replace with your email for faster rate limits
+    this.politeEmail = 'yash.610@live.com'; // Your email for faster rate limits
   }
 
   /**
@@ -31,7 +31,7 @@ class OpenAlexService {
    * Get cache key for a query
    */
   getCacheKey(topic, page, perPage) {
-    return `${topic}:${page}: ${perPage}`;
+    return `${topic}: ${page}:${perPage}`;
   }
 
   /**
@@ -54,7 +54,6 @@ class OpenAlexService {
 
   /**
    * Search papers with instant cache + progressive loading
-   * Returns immediately with cached results, then fetches fresh data
    */
   async searchPapers(topic, options = {}) {
     const {
@@ -73,7 +72,7 @@ class OpenAlexService {
     const cached = this.cache.get(cacheKey);
     if (this.isCacheValid(cached)) {
       if (onCacheHit) {
-        onCacheHit(cached.data);
+        onCacheHit(cached. data);
       }
     }
 
@@ -90,11 +89,11 @@ class OpenAlexService {
       const response = await fetch(url, { signal });
 
       if (!response.ok) {
-        throw new Error(`OpenAlex API error: ${response. status}`);
+        throw new Error(`OpenAlex API error: ${response.status}`);
       }
 
       const data = await response.json();
-      const papers = this.transformResults(data. results || [], topic);
+      const papers = this.transformResults(data.results || [], topic);
 
       // Update cache
       this.cache.set(cacheKey, {
@@ -124,10 +123,10 @@ class OpenAlexService {
    */
   async prefetchNextPage(topic, currentPage, perPage = 25) {
     const nextPage = currentPage + 1;
-    const cacheKey = this. getCacheKey(topic, nextPage, perPage);
+    const cacheKey = this.getCacheKey(topic, nextPage, perPage);
 
     // Skip if already cached
-    if (this.isCacheValid(this.cache. get(cacheKey))) {
+    if (this.isCacheValid(this. cache.get(cacheKey))) {
       return;
     }
 
@@ -156,10 +155,10 @@ class OpenAlexService {
       citations: work.cited_by_count || 0,
       url: work.id || '#',
       pdfUrl: work.open_access?. oa_url || null,
-      venue: work.primary_location?. source?. display_name || 'Unknown venue',
+      venue: work.primary_location?.source?. display_name || 'Unknown venue',
       topic,
       concepts: work.concepts?. slice(0, 5).map(c => c.display_name) || [],
-      isOpenAccess: work.open_access?.is_oa || false
+      isOpenAccess: work.open_access?. is_oa || false
     }));
   }
 
@@ -170,11 +169,11 @@ class OpenAlexService {
     if (!authorships?. length) return 'Unknown';
     const names = authorships
       .slice(0, 5)
-      .map(a => a.author?. display_name)
+      .map(a => a.author?.display_name)
       .filter(Boolean);
     
     if (names.length === 0) return 'Unknown';
-    return names.join(', ') + (authorships.length > 5 ?  ' et al.' : '');
+    return names.join(', ') + (authorships.length > 5 ? ' et al.' : '');
   }
 
   /**
@@ -224,7 +223,7 @@ class OpenAlexService {
   }
 
   /**
-   * Clear cache (useful for debugging)
+   * Clear cache
    */
   clearCache() {
     this.cache.clear();
