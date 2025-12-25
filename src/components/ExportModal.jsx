@@ -1,179 +1,164 @@
-import { useState } from 'react';
+import { useState, useCallback, memo } from 'react';
 import { X } from 'lucide-react';
 import './ExportModal.css';
 
-function ExportModal({ isOpen, onClose, papers }) {
+const ExportModal = memo(function ExportModal({ isOpen, onClose, papers }) {
   const [activeTab, setActiveTab] = useState('json');
 
-  if (!isOpen) return null;
-
-  const downloadFile = (content, filename, type) => {
+  const downloadFile = useCallback((content, filename, type) => {
     const blob = new Blob([content], { type });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = filename;
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
     URL.revokeObjectURL(url);
-  };
+  }, []);
 
-  const exportJSON = () => {
-    const data = {
-      exportDate: new Date().toISOString(),
-      totalPapers: papers.length,
-      papers: papers
-    };
-    downloadFile(JSON.stringify(data, null, 2), 'papers.json', 'application/json');
-    alert('✅ JSON file downloaded!');
-  };
+  const exportJSON = useCallback(() => {
+    const data = JSON.stringify(papers, null, 2);
+    downloadFile(data, 'liked_papers.json', 'application/json');
+  }, [papers, downloadFile]);
 
-  const exportCSV = () => {
-    const headers = ['Title', 'Authors', 'Year', 'Venue', 'Citations', 'Abstract', 'URL'];
-    const rows = papers.map(p => [
-      `"${p.title.replace(/"/g, '""')}"`,
-      `"${p.authors.replace(/"/g, '""')}"`,
-      p.year,
-      `"${(p.venue || '').replace(/"/g, '""')}"`,
-      p.citations || 0,
-      `"${p.abstract.replace(/"/g, '""')}"`,
-      `"${p.url || ''}"`
+  const exportCSV = useCallback(() => {
+    const headers = ['Title', 'Authors', 'Year', 'Citations', 'Venue', 'URL', 'PDF URL', 'Abstract'];
+    const rows = papers.map(paper => [
+      `"${(paper.title || '').replace(/"/g, '""')}"`,
+      `"${(paper.authors || '').replace(/"/g, '""')}"`,
+      paper.year || '',
+      paper.citations || 0,
+      `"${(paper.venue || '').replace(/"/g, '""')}"`,
+      paper.url || '',
+      paper. pdfUrl || '',
+      `"${(paper.abstract || '').replace(/"/g, '""')}"`
     ]);
-    let csv = headers.join(',') + '\n' + rows.map(row => row.join(',')).join('\n');
-    downloadFile(csv, 'papers.csv', 'text/csv');
-    alert('✅ CSV file downloaded!');
-  };
+    const csv = [headers. join(','), ...rows.map(r => r.join(','))].join('\n');
+    downloadFile(csv, 'liked_papers. csv', 'text/csv');
+  }, [papers, downloadFile]);
 
-  const exportBibTeX = () => {
+  const exportBibTeX = useCallback(() => {
     let bibtex = '';
-    papers.forEach((paper, idx) => {
-      const key = `${paper.authors.split(',')[0].replace(/\s+/g, '')}${paper.year}_${idx + 1}`;
+    papers. forEach((paper, i) => {
+      const key = `paper${i + 1}_${paper.year || 'unknown'}`;
       bibtex += `@article{${key},\n`;
-      bibtex += `  title = {${paper.title}},\n`;
-      bibtex += `  author = {${paper.authors.split(', ').join(' and ')}},\n`;
-      bibtex += `  year = {${paper.year}},\n`;
+      bibtex += `  title = {${paper.title || 'Unknown'}},\n`;
+      bibtex += `  author = {${paper.authors || 'Unknown'}},\n`;
+      bibtex += `  year = {${paper.year || 'Unknown'}},\n`;
       if (paper.venue) bibtex += `  journal = {${paper.venue}},\n`;
       if (paper.url) bibtex += `  url = {${paper.url}},\n`;
-      bibtex += `  note = {Citations: ${paper.citations}}\n}\n\n`;
+      bibtex += `  note = {Citations: ${paper.citations || 0}}\n`;
+      bibtex += `}\n\n`;
     });
     downloadFile(bibtex, 'references.bib', 'text/plain');
-    alert('✅ BibTeX file downloaded!');
-  };
+  }, [papers, downloadFile]);
 
-  const exportEndNote = () => {
+  const exportEndNote = useCallback(() => {
     let endnote = '';
-    papers.forEach(paper => {
+    papers.forEach((paper) => {
       endnote += `%0 Journal Article\n`;
-      endnote += `%T ${paper.title}\n`;
-      paper.authors.split(', ').forEach(author => {
+      endnote += `%T ${paper.title || 'Unknown'}\n`;
+      const authors = (paper.authors || 'Unknown').split(', ');
+      authors.forEach((author) => {
         endnote += `%A ${author}\n`;
       });
-      endnote += `%D ${paper.year}\n`;
+      endnote += `%D ${paper.year || 'Unknown'}\n`;
       if (paper.venue) endnote += `%J ${paper.venue}\n`;
       if (paper.abstract) endnote += `%X ${paper.abstract}\n`;
       if (paper.url) endnote += `%U ${paper.url}\n`;
-      endnote += `%Z Citations: ${paper.citations}\n\n`;
+      endnote += `%Z Citations: ${paper.citations || 0}\n\n`;
     });
     downloadFile(endnote, 'references.enw', 'text/plain');
-    alert('✅ EndNote file downloaded!');
-  };
+  }, [papers, downloadFile]);
 
-  const exportText = () => {
+  const exportText = useCallback(() => {
     let text = '=== LIKED RESEARCH PAPERS ===\n\n';
     papers.forEach((paper, i) => {
-      text += `${i + 1}. ${paper.title}\n`;
-      text += `   Authors: ${paper.authors}\n`;
-      text += `   Year: ${paper.year}\n`;
+      text += `${i + 1}. ${paper.title || 'Unknown'}\n`;
+      text += `   Authors: ${paper.authors || 'Unknown'}\n`;
+      text += `   Year: ${paper.year || 'Unknown'}\n`;
+      text += `   Citations: ${paper.citations || 0}\n`;
       if (paper.venue) text += `   Venue: ${paper.venue}\n`;
-      if (paper.citations) text += `   Citations: ${paper.citations}\n`;
-      text += `   Abstract: ${paper.abstract}\n`;
-      if (paper.url) text += `   URL: ${paper.url}\n\n`;
+      if (paper.url) text += `   URL: ${paper.url}\n`;
+      if (paper.pdfUrl) text += `   PDF: ${paper.pdfUrl}\n`;
+      text += `\n`;
     });
-    downloadFile(text, 'papers.txt', 'text/plain');
-    alert('✅ Text file downloaded!');
+    downloadFile(text, 'liked_papers.txt', 'text/plain');
+  }, [papers, downloadFile]);
+
+  if (!isOpen) return null;
+
+  const tabs = [
+    { id:  'json', label: 'JSON', free: true },
+    { id:  'csv', label: 'CSV', free: true },
+    { id: 'bibtex', label: 'BibTeX', free: true },
+    { id: 'endnote', label: 'EndNote', free: true },
+    { id: 'text', label:  'Text', free: true }
+  ];
+
+  const handleExport = () => {
+    switch (activeTab) {
+      case 'json':
+        exportJSON();
+        break;
+      case 'csv':
+        exportCSV();
+        break;
+      case 'bibtex': 
+        exportBibTeX();
+        break;
+      case 'endnote':
+        exportEndNote();
+        break;
+      case 'text':
+        exportText();
+        break;
+      default:
+        break;
+    }
   };
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <h3>📤 Export Your Collection</h3>
-          <button className="close-btn" onClick={onClose}>
-            <X size={20} />
+          <h2>Export Papers ({papers.length})</h2>
+          <button className="modal-close" onClick={onClose}>
+            <X size={24} />
           </button>
         </div>
 
-        <p className="modal-description">
-          Choose export format for your liked papers ({papers.length} papers)
-        </p>
-
-        <div className="tabs-list">
-          <button
-            className={`tab-btn ${activeTab === 'json' ? 'active' : ''}`}
-            onClick={() => setActiveTab('json')}
-          >
-            JSON
-          </button>
-          <button
-            className={`tab-btn ${activeTab === 'csv' ? 'active' : ''}`}
-            onClick={() => setActiveTab('csv')}
-          >
-            CSV
-          </button>
-          <button
-            className={`tab-btn ${activeTab === 'bibtex' ? 'active' : ''}`}
-            onClick={() => setActiveTab('bibtex')}
-          >
-            BibTeX
-          </button>
-          <button
-            className={`tab-btn ${activeTab === 'endnote' ? 'active' : ''}`}
-            onClick={() => setActiveTab('endnote')}
-          >
-            EndNote
-          </button>
-          <button
-            className={`tab-btn ${activeTab === 'txt' ? 'active' : ''}`}
-            onClick={() => setActiveTab('txt')}
-          >
-            Text
-          </button>
+        <div className="modal-tabs">
+          {tabs.map(tab => (
+            <button
+              key={tab.id}
+              className={`modal-tab ${activeTab === tab. id ? 'active' : ''}`}
+              onClick={() => setActiveTab(tab.id)}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
 
-        <div className="tab-content">
-          {activeTab === 'json' && (
-            <div className="tab-panel">
-              <p>Export as JSON format - perfect for importing into other apps or databases.</p>
-              <button className="download-btn" onClick={exportJSON}>💾 Download JSON</button>
+        <div className="modal-body">
+          {papers.length === 0 ? (
+            <div className="empty-export">
+              <p>No liked papers to export yet.</p>
+              <p>Swipe right on papers you like!</p>
             </div>
-          )}
-          {activeTab === 'csv' && (
-            <div className="tab-panel">
-              <p>Export as CSV spreadsheet - open in Excel, Google Sheets, or any spreadsheet software.</p>
-              <button className="download-btn" onClick={exportCSV}>📊 Download CSV</button>
-            </div>
-          )}
-          {activeTab === 'bibtex' && (
-            <div className="tab-panel">
-              <p>Export as BibTeX format - for LaTeX, Overleaf, and academic citation managers.</p>
-              <button className="download-btn" onClick={exportBibTeX}>📖 Download BibTeX</button>
-            </div>
-          )}
-          {activeTab === 'endnote' && (
-            <div className="tab-panel">
-              <p>Export as EndNote format - compatible with EndNote, Mendeley, and Zotero.</p>
-              <button className="download-btn" onClick={exportEndNote}>📋 Download EndNote</button>
-            </div>
-          )}
-          {activeTab === 'txt' && (
-            <div className="tab-panel">
-              <p>Export as plain text - simple, readable format for notes and documentation.</p>
-              <button className="download-btn" onClick={exportText}>📄 Download Text</button>
+          ) : (
+            <div className="export-preview">
+              <p>Ready to export {papers.length} paper{papers.length !== 1 ? 's' :  ''} as {activeTab. toUpperCase()}</p>
+              <button className="export-btn" onClick={handleExport}>
+                Download {activeTab.toUpperCase()}
+              </button>
             </div>
           )}
         </div>
       </div>
     </div>
   );
-}
+});
 
 export default ExportModal;
