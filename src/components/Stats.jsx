@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import './Stats.css';
 
-function Stats({ liked, disliked, archived }) {
+const Stats = memo(function Stats({ liked, disliked, archived }) {
   return (
     <div className="stats">
       <div className="stat">
@@ -17,6 +18,6 @@ function Stats({ liked, disliked, archived }) {
       </div>
     </div>
   );
-}
+});
 
 export default Stats;
